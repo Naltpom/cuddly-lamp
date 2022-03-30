@@ -1,0 +1,52 @@
+{
+  "name": "cuddly-lamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start-dev": "set NODE_ENV=dev && nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naltpom/cuddly-lamp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naltpom/cuddly-lamp/issues"
+  },
+  "homepage": "https://github.com/Naltpom/cuddly-lamp#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dotenv-flow": "^3.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "express-fileupload": "^1.3.1",
+    "express-session": "^1.17.2",
+    "jabber": "^1.4.0",
+    "moment": "^2.24.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "node": "^16.13.1",
+    "random-picture": "^4.0.6",
+    "sequelize": "^6.17.0",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
+    "ucfirst": "^1.0.0",
+    "uuid": "^8.3.2",
+    "winston": "^3.6.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.0",
+    "babel-jest": "^27.4.6",
+    "jest": "^27.4.7",
+    "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "16.13.1"
+  }
+}
