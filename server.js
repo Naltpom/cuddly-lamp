@@ -1,5 +1,6 @@
 require('dotenv-flow').config({ silent: true });
 const env = process.env;
+const db = require('./config/db.config');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const sessions = require('express-session');
@@ -47,8 +48,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(router.Auth);
-app.use(router.Default);
+app.use(router);
 
 io.on('connection', (socket) => {
     console.log('connection')

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 module.exports = router;
 
-module.exports = {
-    Auth: require("./AuthRoute"),
-    Default: require("./DefaultRoute"),
-};
+
+router.use(require("./AuthRoute"))
+router.use(require("./DefaultRoute"))
