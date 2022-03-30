@@ -55,7 +55,7 @@ async function initialize() {
 
     db.User.create({
         username: 'Admin',
-        email: 'john.dee@gmail.com',
+        email: 'john.doe@gmail.com',
         password: await bcrypt.hash('1234', 10),
     })
 }
