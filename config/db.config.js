@@ -46,16 +46,12 @@ async function initialize() {
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
-
     // init models and add them to the exported db object
     db.User = require('../src/models/UserModel')(sequelize);
 
     // sync all models with database
     await sequelize.sync();
 
-    db.User.create({
-        username: 'Admin',
-        email: 'john.doe@gmail.com',
-        password: await bcrypt.hash('1234', 10),
-    })
+    db.User.create({ username: 'Admin', email: 'john.doe@gmail.com', password: '1234', firstName: 'john', familyName: 'doe' })
+    db.User.create({ username: 'Jane', email: 'jane.doe@gmail.com', password: '1234', firstName: 'jane', familyName: 'doe' })
 }
