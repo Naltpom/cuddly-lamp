@@ -46,8 +46,11 @@ async function initialize() {
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }
+
     // init models and add them to the exported db object
-    db.User = require('../src/models/UserModel')(sequelize);
+    db.Sequelize = Sequelize;
+    db.sequelize = sequelize;
+    db.User = require('../src/models/UserModel')(sequelize, Sequelize);
 
     // sync all models with database
     await sequelize.sync();
