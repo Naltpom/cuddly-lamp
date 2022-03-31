@@ -4,6 +4,6 @@ const middleware = require('../middlewares/auth')
 const router = express.Router();
 module.exports = router;
 
-router.get('/', middleware, (req, res) => {
+router.get('/', (req, res) => {
     res.render('components/pages/index');
 });
