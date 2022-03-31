@@ -47,7 +47,7 @@ $(function () {
     composeMaximize = $('.compose-maximize'),
     isRtl = $('html').attr('data-textdirection') === 'rtl';
 
-  var assetPath = '../../../assets/';
+  let assetPath = './';
 
   if ($('body').attr('data-framework') === 'laravel') {
     assetPath = $('body').attr('data-asset-path');

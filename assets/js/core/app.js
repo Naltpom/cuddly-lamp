@@ -31,10 +31,10 @@ window.colors = {
 };
 (function (window, document, $) {
   'use strict';
-  var $html = $('html');
-  var $body = $('body');
-  var $textcolor = '#4e5154';
-  var assetPath = '../../../assets/';
+  let $html = $('html');
+  let $body = $('body');
+  let $textcolor = '#4e5154';
+  let assetPath = './';
 
   if ($('body').attr('data-framework') === 'laravel') {
     assetPath = $('body').attr('data-asset-path');
@@ -49,8 +49,8 @@ window.colors = {
   }
 
   $(window).on('load', function () {
-    var rtl;
-    var compactMenu = false;
+    let rtl;
+    let compactMenu = false;
 
     if ($body.hasClass('menu-collapsed') || localStorage.getItem('menuCollapsed') === 'true') {
       compactMenu = true;
@@ -67,7 +67,7 @@ window.colors = {
     $.app.menu.init(compactMenu);
 
     // Navigation configurations
-    var config = {
+    let config = {
       speed: 300 // set speed to expand / collapse menu
     };
     if ($.app.nav.initialized === false) {
@@ -82,8 +82,8 @@ window.colors = {
     // $('[data-bs-toggle="tooltip"]').tooltip({
     //   container: 'body'
     // });
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 
@@ -111,19 +111,19 @@ window.colors = {
 
     //  Notifications & messages scrollable
     $('.scrollable-container').each(function () {
-      var scrollable_container = new PerfectScrollbar($(this)[0], {
+      let scrollable_container = new PerfectScrollbar($(this)[0], {
         wheelPropagation: false
       });
     });
 
     // Reload Card
     $('a[data-action="reload"]').on('click', function () {
-      var block_ele = $(this).closest('.card');
-      var reloadActionOverlay;
+      let block_ele = $(this).closest('.card');
+      let reloadActionOverlay;
       if ($html.hasClass('dark-layout')) {
-        var reloadActionOverlay = '#10163a';
+        let reloadActionOverlay = '#10163a';
       } else {
-        var reloadActionOverlay = '#fff';
+        let reloadActionOverlay = '#fff';
       }
       // Block Element
       block_ele.block({
@@ -147,9 +147,9 @@ window.colors = {
     });
 
     $('.card .heading-elements a[data-action="collapse"]').on('click', function () {
-      var $this = $(this),
+      let $this = $(this),
         card = $this.closest('.card');
-      var cardHeight;
+      let cardHeight;
 
       if (parseInt(card[0].style.height, 10) > 0) {
         cardHeight = card.css('height');
@@ -169,7 +169,7 @@ window.colors = {
     $('.main-menu-content').find('li.active').parents('li').addClass('sidebar-group-active');
 
     // Add open class to parent list item if subitem is active except compact menu
-    var menuType = $body.data('menu');
+    let menuType = $body.data('menu');
     if (menuType != 'horizontal-menu' && compactMenu === false) {
       $('.main-menu-content').find('li.active').parents('li').addClass('open');
     }
@@ -183,16 +183,16 @@ window.colors = {
     }
 
     //  Dynamic height for the chartjs div for the chart animations to work
-    var chartjsDiv = $('.chartjs'),
+    let chartjsDiv = $('.chartjs'),
       canvasHeight = chartjsDiv.children('canvas').attr('height'),
       mainMenu = $('.main-menu');
     chartjsDiv.css('height', canvasHeight);
 
     if ($body.hasClass('boxed-layout')) {
       if ($body.hasClass('vertical-overlay-menu')) {
-        var menuWidth = mainMenu.width();
-        var contentPosition = $('.app-content').position().left;
-        var menuPositionAdjust = contentPosition - menuWidth;
+        let menuWidth = mainMenu.width();
+        let contentPosition = $('.app-content').position().left;
+        let menuPositionAdjust = contentPosition - menuWidth;
         if ($body.hasClass('menu-flipped')) {
           mainMenu.css('right', menuPositionAdjust + 'px');
         } else {
@@ -217,7 +217,7 @@ window.colors = {
                     length = Max length of characters
     */
     function checkTextAreaMaxLength(textBox, e) {
-      var maxLength = parseInt($(textBox).data('length')),
+      let maxLength = parseInt($(textBox).data('length')),
         counterValue = $('.textarea-counter-value'),
         charTextarea = $('.char-textarea');
 
@@ -252,7 +252,7 @@ window.colors = {
 
     $('.content-overlay').on('click', function () {
       $('.search-list').removeClass('show');
-      var searchInput = $('.search-input-close').closest('.search-input');
+      let searchInput = $('.search-input-close').closest('.search-input');
       if (searchInput.hasClass('open')) {
         searchInput.removeClass('open');
         searchInputInputfield.val('');
@@ -265,7 +265,7 @@ window.colors = {
     });
 
     // To show shadow in main menu when menu scrolls
-    var container = document.getElementsByClassName('main-menu-content');
+    let container = document.getElementsByClassName('main-menu-content');
     if (container.length > 0) {
       container[0].addEventListener('ps-scroll-y', function () {
         if ($(this).find('.ps__thumb-y').position().top > 0) {
@@ -286,13 +286,13 @@ window.colors = {
 
   // Execute below code only if we find hammer js for touch swipe feature on small screen
   if (typeof Hammer !== 'undefined') {
-    var rtl;
+    let rtl;
     if ($('html').data('textdirection') == 'rtl') {
       rtl = true;
     }
 
     // Swipe menu gesture
-    var swipeInElement = document.querySelector('.drag-target'),
+    let swipeInElement = document.querySelector('.drag-target'),
       swipeInAction = 'panright',
       swipeOutAction = 'panleft';
 
@@ -302,7 +302,7 @@ window.colors = {
     }
 
     if ($(swipeInElement).length > 0) {
-      var swipeInMenu = new Hammer(swipeInElement);
+      let swipeInMenu = new Hammer(swipeInElement);
 
       swipeInMenu.on(swipeInAction, function (ev) {
         if ($body.hasClass('vertical-overlay-menu')) {
@@ -314,8 +314,8 @@ window.colors = {
 
     // menu swipe out gesture
     setTimeout(function () {
-      var swipeOutElement = document.querySelector('.main-menu');
-      var swipeOutMenu;
+      let swipeOutElement = document.querySelector('.main-menu');
+      let swipeOutMenu;
 
       if ($(swipeOutElement).length > 0) {
         swipeOutMenu = new Hammer(swipeOutElement);
@@ -335,10 +335,10 @@ window.colors = {
     }, 300);
 
     // menu close on overlay tap
-    var swipeOutOverlayElement = document.querySelector('.sidenav-overlay');
+    let swipeOutOverlayElement = document.querySelector('.sidenav-overlay');
 
     if ($(swipeOutOverlayElement).length > 0) {
-      var swipeOutOverlayMenu = new Hammer(swipeOutOverlayElement);
+      let swipeOutOverlayMenu = new Hammer(swipeOutOverlayElement);
 
       swipeOutOverlayMenu.on('tap', function (ev) {
         if ($body.hasClass('vertical-overlay-menu')) {
@@ -392,10 +392,10 @@ window.colors = {
   $('#sidebar-page-navigation').on('click', 'a.nav-link', function (e) {
     e.preventDefault();
     e.stopPropagation();
-    var $this = $(this),
+    let $this = $(this),
       href = $this.attr('href');
-    var offset = $(href).offset();
-    var scrollto = offset.top - 80; // minus fixed header height
+    let offset = $(href).offset();
+    let scrollto = offset.top - 80; // minus fixed header height
     $('html, body').animate(
       {
         scrollTop: scrollto
@@ -413,13 +413,13 @@ window.colors = {
   // init i18n and load language file
   if ($body.attr('data-framework') === 'laravel') {
     // change language according to data-language of dropdown item
-    var language = $('html')[0].lang;
+    let language = $('html')[0].lang;
     if (language !== null) {
       // get the selected flag class
-      var selectedLang = $('.dropdown-language')
+      let selectedLang = $('.dropdown-language')
         .find('a[data-language=' + language + ']')
         .text();
-      var selectedFlag = $('.dropdown-language')
+      let selectedFlag = $('.dropdown-language')
         .find('a[data-language=' + language + '] .flag-icon')
         .attr('class');
       // set the class in button
@@ -444,23 +444,23 @@ window.colors = {
 
     // change language according to data-language of dropdown item
     $('.dropdown-language .dropdown-item').on('click', function () {
-      var $this = $(this);
+      let $this = $(this);
       $this.siblings('.selected').removeClass('selected');
       $this.addClass('selected');
-      var selectedLang = $this.text();
-      var selectedFlag = $this.find('.flag-icon').attr('class');
+      let selectedLang = $this.text();
+      let selectedFlag = $this.find('.flag-icon').attr('class');
       $('#dropdown-flag .selected-language').text(selectedLang);
       $('#dropdown-flag .flag-icon').removeClass().addClass(selectedFlag);
-      var currentLanguage = $this.data('language');
+      let currentLanguage = $this.data('language');
       i18next.changeLanguage(currentLanguage, function (err, t) {
-        $('.main-menu, .horizontal-menu-wrapper').localize();
+        $('.main-menu').localize();
       });
     });
   }
 
   /********************* Bookmark & Search ***********************/
-  // This variable is used for mouseenter and mouseleave events of search list
-  var $filename = $('.search-input input').data('search'),
+  // This letiable is used for mouseenter and mouseleave events of search list
+  let $filename = $('.search-input input').data('search'),
     bookmarkWrapper = $('.bookmark-wrapper'),
     bookmarkStar = $('.bookmark-wrapper .bookmark-star'),
     bookmarkInput = $('.bookmark-wrapper .bookmark-input'),
@@ -480,23 +480,23 @@ window.colors = {
     bookmarkInput.find('input').focus();
     bookmarkWrapper.find('.search-list').addClass('show');
 
-    var arrList = $('ul.nav.navbar-nav.bookmark-icons li'),
+    let arrList = $('ul.nav.navbar-nav.bookmark-icons li'),
       $arrList = '',
       $activeItemClass = '';
 
     $('ul.search-list li').remove();
 
-    for (var i = 0; i < arrList.length; i++) {
+    for (let i = 0; i < arrList.length; i++) {
       if (i === 0) {
         $activeItemClass = 'current_item';
       } else {
         $activeItemClass = '';
       }
 
-      var iconName = '',
+      let iconName = '',
         className = '';
       if ($(arrList[i].firstChild.firstChild).hasClass('feather')) {
-        var classString = arrList[i].firstChild.firstChild.getAttribute('class');
+        let classString = arrList[i].firstChild.firstChild.getAttribute('class');
         iconName = classString.split('feather-')[1].split(' ')[0];
         className = classString.split('feather-')[1].split(' ')[1];
       }
@@ -523,8 +523,8 @@ window.colors = {
 
   // Navigation Search area Open
   navLinkSearch.on('click', function () {
-    var $this = $(this);
-    var searchInput = $(this).parent('.nav-search').find('.search-input');
+    let $this = $(this);
+    let searchInput = $(this).parent('.nav-search').find('.search-input');
     searchInput.addClass('open');
     searchInputInputfield.focus();
     searchList.find('li').remove();
@@ -533,7 +533,7 @@ window.colors = {
 
   // Navigation Search area Close
   $('.search-input-close').on('click', function () {
-    var $this = $(this),
+    let $this = $(this),
       searchInput = $(this).closest('.search-input');
     if (searchInput.hasClass('open')) {
       searchInput.removeClass('open');
@@ -546,12 +546,12 @@ window.colors = {
 
   // Filter
   if ($('.search-list-main').length) {
-    var searchListMain = new PerfectScrollbar('.search-list-main', {
+    let searchListMain = new PerfectScrollbar('.search-list-main', {
       wheelPropagation: false
     });
   }
   if ($('.search-list-bookmark').length) {
-    var searchListBookmark = new PerfectScrollbar('.search-list-bookmark', {
+    let searchListBookmark = new PerfectScrollbar('.search-list-bookmark', {
       wheelPropagation: false
     });
   }
@@ -576,8 +576,8 @@ window.colors = {
         }
       }
 
-      // Define variables
-      var value = $(this).val().toLowerCase(), //get values of input on keyup
+      // Define letiables
+      let value = $(this).val().toLowerCase(), //get values of input on keyup
         activeClass = '',
         bookmark = false,
         liList = $('ul.search-list li'); // get all the list items of the search
@@ -603,7 +603,7 @@ window.colors = {
           bookmarkSearchList.removeClass('show');
         }
 
-        var $startList = '',
+        let $startList = '',
           $otherList = '',
           $htmlList = '',
           $bookmarkhtmlList = '',
@@ -620,7 +620,7 @@ window.colors = {
 
         // getting json data from file for search results
         $.getJSON(assetPath + 'data/' + $filename + '.json', function (data) {
-          for (var i = 0; i < data.listItems.length; i++) {
+          for (let i = 0; i < data.listItems.length; i++) {
             // if current is bookmark then give class to star icon
             // for laravel
             if ($('body').attr('data-framework') === 'laravel') {
@@ -629,10 +629,10 @@ window.colors = {
 
             if (bookmark === true) {
               activeClass = ''; // resetting active bookmark class
-              var arrList = $('ul.nav.navbar-nav.bookmark-icons li'),
+              let arrList = $('ul.nav.navbar-nav.bookmark-icons li'),
                 $arrList = '';
               // Loop to check if current seach value match with the bookmarks already there in navbar
-              for (var j = 0; j < arrList.length; j++) {
+              for (let j = 0; j < arrList.length; j++) {
                 if (data.listItems[i].name === arrList[j].firstChild.dataset.bsOriginalTitle) {
                   activeClass = ' text-warning';
                   break;
@@ -669,13 +669,13 @@ window.colors = {
               a++;
             }
           }
-          for (var i = 0; i < data.listItems.length; i++) {
+          for (let i = 0; i < data.listItems.length; i++) {
             if (bookmark === true) {
               activeClass = ''; // resetting active bookmark class
-              var arrList = $('ul.nav.navbar-nav.bookmark-icons li'),
+              let arrList = $('ul.nav.navbar-nav.bookmark-icons li'),
                 $arrList = '';
               // Loop to check if current search value match with the bookmarks already there in navbar
-              for (var j = 0; j < arrList.length; j++) {
+              for (let j = 0; j < arrList.length; j++) {
                 if (data.listItems[i].name === arrList[j].firstChild.dataset.bsOriginalTitle) {
                   activeClass = ' text-warning';
                 } else {
@@ -732,19 +732,19 @@ window.colors = {
         });
       } else {
         if (bookmark === true) {
-          var arrList = $('ul.nav.navbar-nav.bookmark-icons li'),
+          let arrList = $('ul.nav.navbar-nav.bookmark-icons li'),
             $arrList = '';
-          for (var i = 0; i < arrList.length; i++) {
+          for (let i = 0; i < arrList.length; i++) {
             if (i === 0) {
               $activeItemClass = 'current_item';
             } else {
               $activeItemClass = '';
             }
 
-            var iconName = '',
+            let iconName = '',
               className = '';
             if ($(arrList[i].firstChild.firstChild).hasClass('feather')) {
-              var classString = arrList[i].firstChild.firstChild.getAttribute('class');
+              let classString = arrList[i].firstChild.firstChild.getAttribute('class');
               iconName = classString.split('feather-')[1].split(' ')[0];
               className = classString.split('feather-')[1].split(' ')[1];
             }
@@ -814,24 +814,24 @@ window.colors = {
     e.stopPropagation();
     if ($(this).hasClass('text-warning')) {
       $(this).removeClass('text-warning');
-      var arrList = $('ul.nav.navbar-nav.bookmark-icons li');
-      for (var i = 0; i < arrList.length; i++) {
+      let arrList = $('ul.nav.navbar-nav.bookmark-icons li');
+      for (let i = 0; i < arrList.length; i++) {
         if (arrList[i].firstChild.dataset.bsOriginalTitle == $(this).parent()[0].innerText) {
           arrList[i].remove();
         }
       }
       e.preventDefault();
     } else {
-      var arrList = $('ul.nav.navbar-nav.bookmark-icons li');
+      let arrList = $('ul.nav.navbar-nav.bookmark-icons li');
       $(this).addClass('text-warning');
       e.preventDefault();
-      var $url = $(this).parent()[0].href,
+      let $url = $(this).parent()[0].href,
         $name = $(this).parent()[0].innerText,
         $listItem = '',
         $listItemDropdown = '',
         iconName = $(this).parent()[0].firstChild.firstChild.dataset.icon;
       if ($($(this).parent()[0].firstChild.firstChild).hasClass('feather')) {
-        var classString = $(this).parent()[0].firstChild.firstChild.getAttribute('class');
+        let classString = $(this).parent()[0].firstChild.firstChild.getAttribute('class');
         iconName = classString.split('feather-')[1].split(' ')[0];
       }
       $listItem =
@@ -851,7 +851,7 @@ window.colors = {
 
   // If we use up key(38) Down key (40) or Enter key(13)
   $(window).on('keydown', function (e) {
-    var $current = $('.search-list li.current_item'),
+    let $current = $('.search-list li.current_item'),
       $next,
       $prev;
     if (e.keyCode === 40) {
@@ -865,7 +865,7 @@ window.colors = {
     }
 
     if (e.keyCode === 13 && $('.search-list li.current_item').length > 0) {
-      var selected_item = $('.search-list li.current_item a');
+      let selected_item = $('.search-list li.current_item a');
       window.location = selected_item.attr('href');
       $(selected_item).trigger('click');
     }
@@ -882,7 +882,7 @@ window.colors = {
 
   $('.form-password-toggle .input-group-text').on('click', function (e) {
     e.preventDefault();
-    var $this = $(this),
+    let $this = $(this),
       inputGroupText = $this.closest('.form-password-toggle'),
       formPasswordToggleIcon = $this,
       formPasswordToggleInput = inputGroupText.find('input');
@@ -910,7 +910,7 @@ window.colors = {
 
     // On Scroll navbar color on horizontal menu
     if ($body.hasClass('navbar-static')) {
-      var scroll = $(window).scrollTop();
+      let scroll = $(window).scrollTop();
 
       if (scroll > 65) {
         $('html:not(.dark-layout) .horizontal-menu .header-navbar.navbar-fixed').css({
@@ -944,7 +944,7 @@ window.colors = {
   });
 
   function getCurrentLayout() {
-    var currentLayout = '';
+    let currentLayout = '';
     if ($html.hasClass('dark-layout')) {
       currentLayout = 'dark-layout';
     } else if ($html.hasClass('bordered-layout')) {
@@ -958,11 +958,11 @@ window.colors = {
   }
 
   // Get the data layout, for blank set to light layout
-  var dataLayout = $html.attr('data-layout') ? $html.attr('data-layout') : 'light-layout';
+  let dataLayout = $html.attr('data-layout') ? $html.attr('data-layout') : 'light-layout';
 
   // Navbar Dark / Light Layout Toggle Switch
   $('.nav-link-style').on('click', function () {
-    var currentLayout = getCurrentLayout(),
+    let currentLayout = getCurrentLayout(),
       switchToLayout = '',
       prevLayout = localStorage.getItem(dataLayout + '-prev-skin', currentLayout);
 
@@ -996,14 +996,14 @@ window.colors = {
   });
 
   // Get current local storage layout
-  var currentLocalStorageLayout = localStorage.getItem(dataLayout + '-current-skin');
+  let currentLocalStorageLayout = localStorage.getItem(dataLayout + '-current-skin');
 
   // Set layout on screen load
   //? Comment it if you don't want to sync layout with local db
   // setLayout(currentLocalStorageLayout);
 
   function setLayout(currentLocalStorageLayout) {
-    var navLinkStyle = $('.nav-link-style'),
+    let navLinkStyle = $('.nav-link-style'),
       currentLayout = getCurrentLayout(),
       mainMenu = $('.main-menu'),
       navbar = $('.header-navbar'),
@@ -1089,7 +1089,7 @@ if (typeof jQuery.validator === 'function') {
 
 // Add validation class to input-group (input group validation fix, currently disabled but will be useful in future)
 /* function inputGroupValidation(el) {
-  var validEl,
+  let validEl,
     invalidEl,
     elem = $(el);
 

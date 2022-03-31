@@ -9,37 +9,37 @@
 $(function () {
   'use strict';
 
-  var basicAlert = $('#basic-alert');
-  var withTitle = $('#with-title');
-  var withFooter = $('#footer-alert');
-  var htmlAlert = $('#html-alert');
+  let basicAlert = $('#basic-alert');
+  let withTitle = $('#with-title');
+  let withFooter = $('#footer-alert');
+  let htmlAlert = $('#html-alert');
 
-  var positionTopStart = $('#position-top-start');
-  var positionTopEnd = $('#position-top-end');
-  var positionBottomStart = $('#position-bottom-start');
-  var positionBottomEnd = $('#position-bottom-end');
+  let positionTopStart = $('#position-top-start');
+  let positionTopEnd = $('#position-top-end');
+  let positionBottomStart = $('#position-bottom-start');
+  let positionBottomEnd = $('#position-bottom-end');
 
-  var bounceIn = $('#bounce-in-animation');
-  var fadeIn = $('#fade-in-animation');
-  var flipX = $('#flip-x-animation');
-  var tada = $('#tada-animation');
-  var shake = $('#shake-animation');
+  let bounceIn = $('#bounce-in-animation');
+  let fadeIn = $('#fade-in-animation');
+  let flipX = $('#flip-x-animation');
+  let tada = $('#tada-animation');
+  let shake = $('#shake-animation');
 
-  var success = $('#type-success');
-  var error = $('#type-error');
-  var warning = $('#type-warning');
-  var info = $('#type-info');
+  let success = $('#type-success');
+  let error = $('#type-error');
+  let warning = $('#type-warning');
+  let info = $('#type-info');
 
-  var customImage = $('#custom-image');
-  var autoClose = $('#auto-close');
-  var outsideClick = $('#outside-click');
-  var question = $('#prompt-function');
-  var ajax = $('#ajax-request');
+  let customImage = $('#custom-image');
+  let autoClose = $('#auto-close');
+  let outsideClick = $('#outside-click');
+  let question = $('#prompt-function');
+  let ajax = $('#ajax-request');
 
-  var confirmText = $('#confirm-text');
-  var confirmColor = $('#confirm-color');
+  let confirmText = $('#confirm-text');
+  let confirmColor = $('#confirm-color');
 
-  var assetPath = '../../../assets/';
+  let assetPath = './';
   if ($('body').attr('data-framework') === 'laravel') {
     assetPath = $('body').attr('data-asset-path');
   }
@@ -352,7 +352,7 @@ $(function () {
   // Auto Close
   if (autoClose.length) {
     autoClose.on('click', function () {
-      var timerInterval;
+      let timerInterval;
       Swal.fire({
         title: 'Auto close alert!',
         html: 'I will close in <b></b> milliseconds.',
