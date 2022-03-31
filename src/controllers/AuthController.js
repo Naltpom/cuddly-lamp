@@ -40,20 +40,17 @@ exports.postRegister = (req, res) => {
     console.log(req.body)
     const { username, email, password, privacyPolicy } = req.body;
 
-    bcrypt.hash(password, 10).then(hash => {
-        db.User.create({
-            username: username,
-            password: hash,
-            email: email
-        }).then(user => {
-            res.redirect(308, '/login')
-        }).catch(error => {
-            console.log(error)
-            res.render('components/pages/auth-register', { error: error });
-        })
+    db.User.create({
+        username: username,
+        password: password,
+        email: email
+    }).then(user => {
+        res.redirect(308, '/login')
+    }).catch(error => {
+        console.log(error)
+        res.render('components/pages/auth-register', { error: error });
     });
 }
-   
 
 exports.getLogout = (req, res) => {
     req.session.destroy()
