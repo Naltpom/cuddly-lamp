@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const db = require('../../config/db.config');
 const { Op } = require('sequelize');
-const jwt = require('jsonwebtoken');
+const { signJwt } = require('../utils/jwt');
 
 exports.getLogin = (req, res) => {
     res.render('components/pages/auth-login');
@@ -26,11 +26,7 @@ exports.postLogin = (req, res) => {
 
             session = req.session;
             session.user = user;
-            session.token = jwt.sign(
-                { uuid: user.uuid, remember: undefined === remember ? false : true }, 
-                'RANDOM_TOKEN_SECRET', 
-                { expiresIn: undefined === remember ? '10s' : '24h' }
-            );
+            session.token = signJwt(user.uuid, undefined === remember ? false : true);
 
             res.redirect(302, '/');
         }).catch(error => {
