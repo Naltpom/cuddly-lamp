@@ -51,6 +51,10 @@ async function initialize() {
     db.Sequelize = Sequelize;
     db.sequelize = sequelize;
     db.User = require('../src/models/UserModel')(sequelize, Sequelize);
+    db.Room = require('../src/models/RoomModel')(sequelize, Sequelize);
+    db.Message = require('../src/models/MessageModel')(sequelize, Sequelize, db);
+    db.UserRoom = require('../src/models/UserRoomModel')(sequelize, Sequelize, db);
+    db.FriendModel = require('../src/models/FriendModel')(sequelize, Sequelize, db);
 
     // sync all models with database
     await sequelize.sync();
