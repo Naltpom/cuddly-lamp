@@ -5,5 +5,6 @@ module.exports = router;
 
 
 router.use(require("./AuthRoute"))
-router.use(middleware, require("./DefaultRoute"))
-router.use(middleware, require("./ChatRoute"))
+router.use('/rooms', require("./RoomRoute"))
+router.use('/', middleware, require("./DefaultRoute"))
+router.use('/chats', middleware, require("./ChatRoute"))
