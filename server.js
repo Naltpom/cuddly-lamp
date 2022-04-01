@@ -21,15 +21,22 @@ const middlewareSession = sessions({
     secret: 'thisismysecrctekeyfhrgfgrfrty84fwir767',
     saveUninitialized: true,
     cookie: { maxAge: oneDay },
-    resave: false,
+    resave: true,
 });
 io.use((socket, next) => {
     middlewareSession(socket.request, {}, next);
 });
 app.use(middlewareSession);
-app.use((req, res, next) => {
-    if (req.session != undefined && req.session.user != null)
+app.use(async (req, res, next) => {
+    if (req.session !== undefined && req.session.user !== undefined) {
         res.locals.me = req.session.user;
+
+    // @todo to remove this is temporal no login
+    } else if (req.session !== undefined && undefined === req.session.user) {
+        session = req.session;
+        session.user = await db.User.findOne({where: {username: 'Admin'}}).then(u => u.dataValues)
+        res.locals.me = session.user
+    }
     next();
 });
 
